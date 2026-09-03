@@ -1,0 +1,8 @@
+# Security & Environment
+.env
+
+# Python Bytecode & Virtual Environments
+__pycache__/
+*.pyc
+venv/
+*.zip
