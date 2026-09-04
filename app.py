@@ -70,10 +70,7 @@ def show_error(error):
     """Display one of our custom exceptions as a friendly red error box."""
     st.error(str(error))
 
-
-# ---------------------------------------------------------------------
 # SIDEBAR
-# ---------------------------------------------------------------------
 
 def _load_env_file():
     env_path = os.path.join(os.path.dirname(__file__), ".env")
@@ -84,7 +81,6 @@ def _load_env_file():
                 if line and not line.startswith("#") and "=" in line:
                     k, v = line.split("=", 1)
                     os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
 _load_env_file()
 
 
@@ -94,9 +90,7 @@ def render_sidebar():
     page = st.sidebar.radio("Go to", PAGES)
     return page
 
-# ---------------------------------------------------------------------
 # PAGES
-# ---------------------------------------------------------------------
 
 def page_home():
     st.title("✈️ Currency & Travel Budget Planner")
@@ -394,19 +388,14 @@ def page_reports():
             except BudgetPlannerError as error:
                 show_error(error)
 
-
-# ---------------------------------------------------------------------
 # MAIN
-# ---------------------------------------------------------------------
 
 def main():
     st.set_page_config(page_title="Travel Budget Planner", page_icon="✈️", layout="wide")
     init_session_state()
     page = render_sidebar()
 
-    # This dictionary maps each sidebar label to the function that
-    # draws that page, so we can call the right one with a single lookup
-    # instead of a long chain of if/elif statements.
+    # This dictionary maps each sidebar label to the function that draws that page, so we can call the right one with a single lookup instead of a long chain of if statements.
     page_functions = {
         "Home": page_home,
         "Currency Converter": page_currency_converter,
